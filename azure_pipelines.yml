@@ -27,9 +27,15 @@ steps:
   inputs:
     solution: $(solution)
     configuration: $(buildConfiguration)
-    restoreNugetPackages: true
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
+
+- task: CmdLine
+  displayName: Copy Files
+  inputs: 
+    script: |
+      $TargetSession = New-PSSession -ComputerName 10.0.0.5 
+      Copy-Item -Path "C:\repos\samplecopy\" -Destination ""C:\repos\" -ToSession $TargetSession -Force -Recurse
 
 
 #- task: CmdLine@2
