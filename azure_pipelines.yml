@@ -43,8 +43,7 @@ steps:
 - task: CmdLine@2
   displayName: Copy Site Files
   inputs:
-     workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
-     script: |
+    script: |
         # Define clear text string for username and password
         [string]$userName = 'jaroldan'
         [string]$userPassword = 'Rollingstones01'
