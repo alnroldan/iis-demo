@@ -30,7 +30,7 @@ steps:
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
 
-- task: CmdLine
+- task: CmdLine@2
   displayName: Copy Files
   inputs: 
     script: |
