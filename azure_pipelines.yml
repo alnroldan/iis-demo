@@ -30,12 +30,31 @@ steps:
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
 
-- task: CmdLine@2
-  displayName: Copy Files
-  inputs: 
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
     script: |
-      $TargetSession = New-PSSession -ComputerName 10.0.0.5 
-      Copy-Item -Path "C:\repos\samplecopy\" -Destination ""C:\repos\" -ToSession $TargetSession -Force -Recurse
+       
+      
+       #Define clear text string for username and password
+       [string]$userName = 'jaroldan'
+       [string]$userPassword = 'Rollingstones01'
+
+       #Convert to SecureString
+       [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
+
+       [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
+
+
+       $LocalPath =  "C:\repos\samplecopy\"
+       $RemotePath = "C:\repos\"
+
+       $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
+            
+       Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
+
+
 
 
 #- task: CmdLine@2
@@ -105,27 +124,6 @@ steps:
 
 
 
-#- task: PowerShell@2
-#  inputs:
-#    targetType: 'inline'
-#    script: |
-      # Write your PowerShell commands here.
-      
-      # Define clear text string for username and password
-#      [string]$userName = 'jaroldan'
-#      [string]$userPassword = 'Rollingstones01'
 
-      # Convert to SecureString
-#      [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
-
-#      [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
-
-
-#      $LocalPath =  "C:\repos\samplecopy\"
-#      $RemotePath = "C:\repos\"
-
-#      $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
-            
-#      Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
 
 
