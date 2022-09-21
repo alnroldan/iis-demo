@@ -30,3 +30,18 @@ steps:
     restoreNugetPackages: true
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      $LocalPath =  "C:\repos\samplecopy\"
+      $RemotePath = "C:\repos\"
+
+      $TargetSession = New-PSSession -ComputerName 10.0.0.5
+      
+      Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
+
+
