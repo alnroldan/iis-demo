@@ -35,13 +35,7 @@ steps:
     Machines: '10.0.0.5'
     UserName: 'jaroldan'
     UserPassword: 'Rollingstones01'
-    InlineScript: |
-      # Write your powershell commands here.
-      
-      Write-Output "Hello World"
-      
-      hostname
-
+    InlineScript: 'Write-Output "Hello World"'
 
 - task: PowerShell@2
   inputs:
