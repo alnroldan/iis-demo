@@ -31,27 +31,32 @@ steps:
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
 
-- task: PowerShell@2
+
+- task: Bash@3
   inputs:
-    targetType: 'inline'
-    script: |
+    filePath: './ps-files/copy-test.ps1'
+
+#- task: PowerShell@2
+#  inputs:
+#    targetType: 'inline'
+#    script: |
       # Write your PowerShell commands here.
       
       # Define clear text string for username and password
-      [string]$userName = 'jaroldan'
-      [string]$userPassword = 'Rollingstones01'
+#      [string]$userName = 'jaroldan'
+#      [string]$userPassword = 'Rollingstones01'
 
       # Convert to SecureString
-      [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
+#      [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
 
-      [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
+#      [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
 
 
-      $LocalPath =  "C:\repos\samplecopy\"
-      $RemotePath = "C:\repos\"
+#      $LocalPath =  "C:\repos\samplecopy\"
+#      $RemotePath = "C:\repos\"
 
-      $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
+#      $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
             
-      Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
+#      Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
 
 
