@@ -32,35 +32,69 @@ steps:
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
 
 
-- task: PowerShell@2
+- task: CmdLine@2
+  displayName: Create Permissions
+  env:
+    USERNAME: jaroldan
+    PASSWORD: Rollingstones01
   inputs:
-    targetType: 'inline'
+         
     script: |
-      # Write your PowerShell commands here.
-      echo "probando"
-      ls 
+      $SECURE_PASSWORD = $PASSWORD | ConvertTo-SecureString -AsPlainText -Force
+      $CREDENTIAL = New-Object System.Management.Automation.PSCredential($USERNAME, $SECURE_PASSWORD)
+
+      export CREDENTIAL=$CREDENTIAL;
+      echo "##vso[task.setvariable variable=CREDENTIAL]$CREDENTIAL";
 
 - task: CmdLine@2
-  displayName: Copy Site Files
+  displayName: Create Permissions
   inputs:
     script: |
-        # Define clear text string for username and password
-        [string]$userName = 'jaroldan'
-        [string]$userPassword = 'Rollingstones01'
+      echo $CREDENTIAL;
 
-        # Convert to SecureString
-        [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
+      # - task: CmdLine@2
+      #   displayName: Stop Application Pool
+      #   env:
+      #     ARM_CLIENT_SECRET: ${{ parameters.AZ_SERVICE_PRINCIPAL_PASSWORD }}
+      #   inputs:
+      #     workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
+      #     script: |
+      #       Invoke-Command -ComputerName Ecbptsw62.uiotest.bpichinchatest.test -ScriptBlock { Start-WebAppPool -Name ".NET v2.0" } -credential $credential
 
-        [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
+      # - task: CmdLine@2
+      #   displayName: Copy Site Files
+      #   env:
+      #     ARM_CLIENT_SECRET: ${{ parameters.AZ_SERVICE_PRINCIPAL_PASSWORD }}
+      #   inputs:
+      #     workingDirectory: ${{ parameters.WORKING_DIRECTORY }}
+      #     script: |
+      #       $Session = New-PSSession -ComputerName "Ecbptsw62.uiotest.bpichinchatest.test" -Credential $credential
+      #       Copy-Item "$(Build.SourcesDirectory)/README.md" -Destination "C:/temp/" -ToSession $Session
 
 
 
-        $LocalPath =  "C:\repos\samplecopy\"
-        $RemotePath = "C:\repos\"
 
-        $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
+#- task: CmdLine@2
+#  displayName: Copy Site Files
+#  inputs:
+#    script: |
+#        # Define clear text string for username and password
+#        [string]$userName = 'jaroldan'
+#        [string]$userPassword = 'Rollingstones01'
+
+#        # Convert to SecureString
+#        [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
+
+#        [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
+
+
+
+#        $LocalPath =  "C:\repos\samplecopy\"
+#        $RemotePath = "C:\repos\"
+
+#        $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
               
-        Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
+#        Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
             
 
 
