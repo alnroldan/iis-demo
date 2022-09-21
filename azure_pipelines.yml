@@ -35,13 +35,10 @@ steps:
     Machines: '10.0.0.5'
     UserName: 'jaroldan'
     UserPassword: 'Rollingstones01'
-    InlineScript: |
-      # Write your powershell commands here.
-      
-      Write-Output "Hello World"
-      
-      hostname
-
+    communicationProtocol: 'Https'
+    authenticationMechanism: 'Default'
+    newPsSessionOptionArguments: '-SkipCACheck -IdleTimeout 7200000 -OperationTimeout 0 -OutputBufferingMode Block'
+    InlineScript: 'Write-Output Hello World'
 
 - task: PowerShell@2
   inputs:
