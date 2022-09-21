@@ -32,25 +32,25 @@ steps:
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
 
 
-- task: CmdLine@2
-  displayName: Create Permissions
-  env:
-    USERNAME: jaroldan
-    PASSWORD: Rollingstones01
-  inputs:
+#- task: CmdLine@2
+#  displayName: Create Permissions
+#  env:
+#    USERNAME: jaroldan
+#    PASSWORD: Rollingstones01
+#  inputs:
          
-    script: |
-      $SECURE_PASSWORD = $PASSWORD | ConvertTo-SecureString -AsPlainText -Force
-      $CREDENTIAL = New-Object System.Management.Automation.PSCredential($USERNAME, $SECURE_PASSWORD)
+#    script: |
+#      $SECURE_PASSWORD = $PASSWORD | ConvertTo-SecureString -AsPlainText -Force
+#      $CREDENTIAL = New-Object System.Management.Automation.PSCredential($USERNAME, $SECURE_PASSWORD)
 
-      export CREDENTIAL=$CREDENTIAL;
-      echo "##vso[task.setvariable variable=CREDENTIAL]$CREDENTIAL";
+#      export CREDENTIAL=$CREDENTIAL;
+#      echo "##vso[task.setvariable variable=CREDENTIAL]$CREDENTIAL";
 
-- task: CmdLine@2
-  displayName: Create Permissions
-  inputs:
-    script: |
-      echo $CREDENTIAL;
+#- task: CmdLine@2
+#  displayName: Create Permissions
+#  inputs:
+#    script: |
+#      echo $CREDENTIAL;
 
       # - task: CmdLine@2
       #   displayName: Stop Application Pool
