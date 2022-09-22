@@ -28,10 +28,11 @@ steps:
     solution: $(solution)
     configuration: $(buildConfiguration)
     msbuildLocationMethod: 'version'
-    msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
+    msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\publish1\\"'
 
 
 - task: PowerShell@2
+  displayName: 'copy files'
   inputs:
     targetType: 'inline'
     script: |
@@ -47,8 +48,8 @@ steps:
        [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
 
 
-       $LocalPath =  "C:\repos\samplecopy\"
-       $RemotePath = "C:\repos\"
+       $LocalPath =  ".\publish1\"
+       $RemotePath = "C:\"
 
        $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
             
