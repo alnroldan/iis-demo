@@ -30,6 +30,8 @@ steps:
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\publish1\\"'
 
+- script: dir /p
+
 
 - task: PowerShell@2
   displayName: 'copy files'
@@ -38,8 +40,6 @@ steps:
     script: |
        
       
-       ls
-    
        #Define clear text string for username and password
        [string]$userName = 'win-iis\jaroldan'
        [string]$userPassword = 'Rollingstones01'
