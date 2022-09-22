@@ -30,18 +30,6 @@ steps:
     msbuildLocationMethod: 'version'
     msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\out\\"'
 
-- task: PowerShellOnTargetMachines@3
-  inputs:
-    Machines: '10.0.0.5'
-    UserName: 'jaroldan'
-    UserPassword: 'Rollingstones01'
-    InlineScript: |
-      # Write your powershell commands here.
-      
-      Write-Output "Hello World"
-      
-      hostname
-
 
 - task: PowerShell@2
   inputs:
