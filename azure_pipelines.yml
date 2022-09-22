@@ -38,7 +38,7 @@ steps:
        
       
        #Define clear text string for username and password
-       [string]$userName = 'jaroldan'
+       [string]$userName = 'win-iis\jaroldan'
        [string]$userPassword = 'Rollingstones01'
 
        #Convert to SecureString
