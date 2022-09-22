@@ -38,6 +38,8 @@ steps:
     script: |
        
       
+       ls
+    
        #Define clear text string for username and password
        [string]$userName = 'win-iis\jaroldan'
        [string]$userPassword = 'Rollingstones01'
