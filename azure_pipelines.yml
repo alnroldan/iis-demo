@@ -50,7 +50,7 @@ steps:
 
        foreach($line in [System.IO.File]::ReadLines(".\demo\publish1\_PublishedWebsites\demo\Prueba.txt"))
        {
-	       $line
+	 $line
        }
 
        $LocalPath =  ".\demo\publish1\_PublishedWebsites\demo"
