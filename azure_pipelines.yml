@@ -12,9 +12,13 @@ pool:
   - agent.name -equals win-docker
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  - name: solution
+    value: '**/*.sln'
+  - name: buildPlatform 
+    value: 'Any CPU'
+  - name: buildConfiguration 
+    value: 'Release'
+  - group: demo-iis
 
 steps:
 - task: NuGetToolInstaller@1
@@ -41,8 +45,8 @@ steps:
        
       
        #Define clear text string for username and password
-       [string]$userName = 'win-iis\jaroldan'
-       [string]$userPassword = 'Rollingstones01'
+       [string]$userName = $env:USER
+       [string]$userPassword = $env:PASSWORD
 
        #Convert to SecureString
        [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
