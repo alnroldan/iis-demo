@@ -50,7 +50,9 @@ steps:
        {
 
        #Define clear text string for username and password
-       echo $USER
+        
+        Write-Host "Valor de usuario variable entorno $(USER)"
+         Write-Host "Valor de usuario variable sistema $(USERNAME)"
 
        #Convert to SecureString
        [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
