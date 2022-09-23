@@ -39,6 +39,9 @@ steps:
 
 - task: PowerShell@2
   displayName: 'copy files'
+  env:
+    USER: $(USERNAME)
+    PWD: $(PASSWORD)
   inputs:
     targetType: 'inline'
     script: |
@@ -48,7 +51,7 @@ steps:
 
        #Define clear text string for username and password
        [string]$userName = $(USER)
-       [string]$userPassword = $(PASSWORD)
+       [string]$userPassword = $(PWD)
 
        #Convert to SecureString
        [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
