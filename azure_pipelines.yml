@@ -59,5 +59,3 @@ steps:
        Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurs
        
        }
-       
-       ls
