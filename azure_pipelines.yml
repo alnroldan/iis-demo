@@ -52,13 +52,13 @@ steps:
            #Define clear text string for username and password
         
            Write-Host "Valor de usuario variable entorno1:$env:USER"
-           Write-Host "Valor de usuario variable entorno2:$(USER)"
+           #Write-Host "Valor de usuario variable entorno2:$(USER)"
            Write-Host "Valor de usuario variable sistema:$(USERNAME)"
 
            #Convert to SecureString
            [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
 
-           [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($USER, $PWD)
+           [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($env:USER, $env:PWD)
 
            $LocalPath =  ".\demo\publish1\_PublishedWebsites\demo"
            $RemotePath = "C:\publish1"
