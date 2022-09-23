@@ -48,12 +48,16 @@ steps:
 
        [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
 
-
        $LocalPath =  ".\demo\publish1\_PublishedWebsites\demo"
        $RemotePath = "C:\publish1"
 
        $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
             
        Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurs
+       
+       foreach($line in [System.IO.File]::ReadLines("C:\agent\_work\1\s\servidores.txt"))
+       {
+       $line
+       }
        
        ls
