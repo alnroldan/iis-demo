@@ -57,9 +57,9 @@ steps:
            Write-Host "Valor de usuario variable sistema:$(USERNAME)"
 
            #Convert to SecureString
-           [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
+           [securestring]$secStringPassword = ConvertTo-SecureString $env:PWD -AsPlainText -Force
 
-           [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($env:USER, $env:PWD)
+           [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($env:USER, $secStringPassword)
 
            $LocalPath =  ".\demo\publish1\_PublishedWebsites\demo"
            $RemotePath = "C:\publish1"
