@@ -42,8 +42,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-       
       
+       foreach($servidor in [System.IO.File]::ReadLines(".\servidores.txt"))
+       {
+
        #Define clear text string for username and password
        [string]$userName = $env:USER
        [string]$userPassword = $env:PASSWORD
@@ -53,10 +55,11 @@ steps:
 
        [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ($userName, $secStringPassword)
 
-
        $LocalPath =  ".\demo\publish1\_PublishedWebsites\demo"
        $RemotePath = "C:\publish1"
 
-       $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
+       $TargetSession = New-PSSession -ComputerName $servidor -Credential $credObject
             
-       Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
+       Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurs
+       
+       }
