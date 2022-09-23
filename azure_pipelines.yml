@@ -52,6 +52,7 @@ steps:
            #Define clear text string for username and password
         
            Write-Host "Valor de usuario variable entorno1:$env:USER"
+           Write-Host "Valor de usuario variable PWD:$env:PWD"
            #Write-Host "Valor de usuario variable entorno2:$(USER)"
            Write-Host "Valor de usuario variable sistema:$(USERNAME)"
 
