@@ -50,8 +50,8 @@ steps:
        {
 
        #Define clear text string for username and password
-       [string]$userName = $(USER)
-       [string]$userPassword = $(PWD)
+       [string]$userName = $USER
+       [string]$userPassword = $PWD
 
        #Convert to SecureString
        [securestring]$secStringPassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
