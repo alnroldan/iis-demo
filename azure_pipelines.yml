@@ -55,3 +55,11 @@ steps:
        $TargetSession = New-PSSession -ComputerName 10.0.0.5 -Credential $credObject
             
        Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurse
+       
+       foreach($line in [System.IO.File]::ReadLines("https://github.com/alnroldan/iis-demo/blob/main/servidores.txt"))
+       {
+       $line
+       }
+       
+       pwd
+       ls
