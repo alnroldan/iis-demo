@@ -15,7 +15,9 @@ namespace demo.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            string value = System.Configuration.ConfigurationManager.AppSettings["Environment"];
+            
+            ViewBag.Message = value;
 
             return View();
         }
