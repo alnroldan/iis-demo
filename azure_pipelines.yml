@@ -16,6 +16,8 @@ variables:
     value: '**/*.sln'
   - name: buildPlatform 
     value: 'Any CPU'
+  - name: project 
+    value: './demo/demo.csproj'
   - name: buildConfiguration 
     value: 'Release'
   - group: demo-iis
@@ -29,10 +31,10 @@ steps:
 
 - task: MSBuild@1
   inputs:
-    solution: $(solution)
+    solution: $(project)
     configuration: $(buildConfiguration)
     msbuildLocationMethod: 'version'
-    msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:PublishProfile=.\demo\Properties\PublishProfiles\IISProfile.pubxml /p:outdir=".\publish1\\"'
+    msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\publish1\\"'
 
 - script: dir /p
 
