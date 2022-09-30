@@ -58,7 +58,11 @@ steps:
            $RemotePath = "C:\publish1"
 
            $TargetSession = New-PSSession -ComputerName $servidor -Credential $credObject
-            
+
+           Invoke-Command -ToSession $TargetSession -ScriptBlock {Stop-WebAppPool -Name demo.iis}
+
            Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurs
+
+           Invoke-Command -ToSession $TargetSession -ScriptBlock {Start-WebAppPool -Name demo.iis}
        
        }
