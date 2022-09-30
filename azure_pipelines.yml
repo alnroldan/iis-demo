@@ -59,10 +59,10 @@ steps:
 
            $TargetSession = New-PSSession -ComputerName $servidor -Credential $credObject
 
-           Invoke-Command -Session $TargetSession -ScriptBlock {Stop-WebAppPool -Name demo.iis}
+           Invoke-Command -Session $TargetSession -ScriptBlock {Stop-WebAppPool -Name demo2.iis}
 
            Copy-Item -Path $LocalPath -Destination $RemotePath -ToSession $TargetSession -Force -Recurs
 
-           Invoke-Command -Session $TargetSession -ScriptBlock {Start-WebAppPool -Name demo.iis}
+           Invoke-Command -Session $TargetSession -ScriptBlock {Start-WebAppPool -Name demo2.iis}
        
        }
