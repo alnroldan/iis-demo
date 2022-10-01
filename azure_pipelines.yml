@@ -34,7 +34,7 @@ steps:
     solution: $(project)
     configuration: $(buildConfiguration)
     msbuildLocationMethod: 'version'
-    msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:PublishProfile=PUBLISH_TARGET /p:outdir=".\publish1\\"'
+    msbuildArguments: '/t:Rebuild /p:Configuration=Release /p:outdir=".\publish1\\"'
 
 - script: dir /p
 
