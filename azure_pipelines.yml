@@ -42,6 +42,7 @@ steps:
     USER: $(USERNAME)
     PWD: $(PASSWORD)
   inputs:
+    solution: $(project)
     msbuildLocationMethod: 'version'
     msbuildArguments: '/p:Configuration= $(buildConfiguration) /p:DeployOnBuild=true /p:PublishProfile=.\demo\PublishProfiles\IISProfile.pubxml /p:password=$(PASSWORD) /p:username=$(USERNAME)'
 
