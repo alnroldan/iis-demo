@@ -34,7 +34,7 @@ steps:
     solution: $(project)
     configuration: $(buildConfiguration)
     msbuildLocationMethod: 'version'
-    msbuildArguments: '/p:DeployOnBuild=true /p:PublishProfile=.\demo\PublishProfiles\IISProfile.pubxml /p:password=$(PASSWORD) /p:username=$(USERNAME)  '
+    msbuildArguments: '/p:DeployOnBuild=true /p:PublishProfile=.\PublishProfiles\IISProfile.pubxml /p:password=$(PASSWORD) /p:username=$(USERNAME)  '
 
 #- task: MSBuild@1
 #  displayName: 'MS Deploy'
