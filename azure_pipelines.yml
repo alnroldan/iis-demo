@@ -29,22 +29,22 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-#- task: MSBuild@1
-#  inputs:
-#    solution: $(project)
-#    configuration: $(buildConfiguration)
-#    msbuildLocationMethod: 'version'
-#    msbuildArguments: '/t:Rebuild  /p:outdir=".\publish1\\"'
-
 - task: MSBuild@1
-  displayName: 'MS Deploy'
-  env:
-    USER: $(USERNAME)
-    PWD: $(PASSWORD)
   inputs:
     solution: $(project)
+    configuration: $(buildConfiguration)
     msbuildLocationMethod: 'version'
-    msbuildArguments: '/p:Configuration= $(buildConfiguration) /p:DeployOnBuild=true /p:PublishProfile=.\demo\PublishProfiles\IISProfile.pubxml /p:password=$(PASSWORD) /p:username=$(USERNAME)'
+    msbuildArguments: '/p:DeployOnBuild=true /p:PublishProfile=..\demo\PublishProfiles\IISProfile.pubxml /p:password=$(PASSWORD) /p:username=$(USERNAME)  '
+
+#- task: MSBuild@1
+#  displayName: 'MS Deploy'
+#  env:
+#    USER: $(USERNAME)
+#    PWD: $(PASSWORD)
+#  inputs:
+#    solution: $(project)
+#    msbuildLocationMethod: 'version'
+#    msbuildArguments: ' /p:DeployOnBuild=true /p:PublishProfile=.\demo\PublishProfiles\IISProfile.pubxml /p:password=$(PASSWORD) /p:username=$(USERNAME)'
 
 
 
