@@ -19,7 +19,7 @@ variables:
   - name: project 
     value: './demo/demo.csproj'
   - name: buildConfiguration 
-    value: 'Debug'
+    value: 'Release'
   - group: demo-iis
 
 steps:
